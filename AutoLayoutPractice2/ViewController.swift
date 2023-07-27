@@ -80,7 +80,7 @@ class ViewController: UIViewController {
         NSLayoutConstraint.deactivate(constraints)
         
         UIView.animate(withDuration: 0.5, delay: 0, options: UIView.AnimationOptions.curveEaseInOut, animations: {
-            self.iconView.backgroundColor = UIColor(hex: "#93DCA7")
+            self.iconView.backgroundColor = UIColor(hex: "#010101")
             self.view.layoutIfNeeded()
         })
     }
@@ -94,9 +94,9 @@ extension ViewController: UITextFieldDelegate {
     
     private func addConstraints() {
         print("addConstraints")
-//        numberUIView.translatesAutoresizingMaskIntoConstraints = false
-//        continueButton.translatesAutoresizingMaskIntoConstraints = false
-//        iconView.translatesAutoresizingMaskIntoConstraints = false
+        numberUIView.translatesAutoresizingMaskIntoConstraints = false
+        continueButton.translatesAutoresizingMaskIntoConstraints = false
+        iconView.translatesAutoresizingMaskIntoConstraints = false
         
         
         constraints.append(NSLayoutConstraint(item: numberUIView, attribute: NSLayoutConstraint.Attribute.bottom, relatedBy: NSLayoutConstraint.Relation.equal, toItem: self.view, attribute: NSLayoutConstraint.Attribute.bottom, multiplier: 0.4, constant: 0))
@@ -117,6 +117,7 @@ extension ViewController: UITextFieldDelegate {
         print("textFieldDidBeginEditing")
         
         addConstraints()
+       
         
         UIView.animate(withDuration: 0.5, delay: 0, options: UIView.AnimationOptions.curveEaseInOut, animations: {
             self.iconView.backgroundColor = UIColor(hex: "#808080")
