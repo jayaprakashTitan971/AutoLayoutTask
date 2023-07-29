@@ -19,7 +19,7 @@
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Tell us your mobile number and let's get you registered" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="E5M-2Z-tg9">
                                 <rect key="frame" x="58" y="66.5" width="259" height="52"/>
-                                <color key="backgroundColor" systemColor="systemGray5Color"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="E5M-2Z-tg9" secondAttribute="height" multiplier="5:1" id="6Q3-qY-esg"/>
                                 </constraints>
@@ -65,13 +65,14 @@
                                             </label>
                                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Mobile Number" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="EAD-4j-zMl">
                                                 <rect key="frame" x="63" y="0.0" width="188" height="34"/>
+                                                <color key="backgroundColor" systemColor="systemGray5Color"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
                                         </subviews>
                                     </stackView>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="backgroundColor" systemColor="systemGray5Color"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="lNQ-2l-EJZ" secondAttribute="height" multiplier="840 : 125.26" id="Don-AJ-vzl"/>
                                     <constraint firstItem="bve-qq-h3l" firstAttribute="width" secondItem="lNQ-2l-EJZ" secondAttribute="width" multiplier="0.12" id="Ehg-S8-lhH"/>
@@ -81,18 +82,19 @@
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eHT-eB-ohR">
-                                <rect key="frame" x="140.5" y="570" width="94" height="30.5"/>
+                                <rect key="frame" x="122" y="558" width="131" height="42.5"/>
+                                <color key="backgroundColor" systemColor="systemGray5Color"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="eHT-eB-ohR" secondAttribute="height" multiplier="176 : 57" id="FoB-wu-eFW"/>
                                 </constraints>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Continue">
-                                    <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <color key="baseForegroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </buttonConfiguration>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                        <color key="backgroundColor" systemColor="systemGray5Color"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="E5M-2Z-tg9" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="4mT-dj-8UN"/>
                             <constraint firstItem="E5M-2Z-tg9" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="bottom" multiplier="0.1" id="6bw-IW-Le6"/>
@@ -100,7 +102,7 @@
                             <constraint firstItem="eHT-eB-ohR" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="YOC-jB-EZR"/>
                             <constraint firstItem="eHT-eB-ohR" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" multiplier="0.9" id="c2c-Um-M99"/>
                             <constraint firstItem="Hl8-jL-w4Y" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="fjl-wT-qTm"/>
-                            <constraint firstItem="eHT-eB-ohR" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.25" id="i4a-Kk-cSa"/>
+                            <constraint firstItem="eHT-eB-ohR" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.35" id="i4a-Kk-cSa"/>
                             <constraint firstItem="lNQ-2l-EJZ" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" multiplier="0.8" id="kLB-Qp-TSh"/>
                             <constraint firstItem="Hl8-jL-w4Y" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="mBD-8G-n1g"/>
                             <constraint firstItem="lNQ-2l-EJZ" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.777" id="rYV-1O-4bO"/>
@@ -126,9 +128,6 @@
         <image name="Group 25633" width="136" height="137"/>
         <systemColor name="labelColor">
             <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemGray5Color">
             <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

@@ -19,34 +19,6 @@ import UIKit
 //    }
 //}
 
-extension UIColor {
-    public convenience init?(hex: String) {
-        let r, g, b, a: CGFloat
-
-        if hex.hasPrefix("#") {
-            let start = hex.index(hex.startIndex, offsetBy: 1)
-            let hexColor = String(hex[start...])
-
-            if hexColor.count == 8 {
-                let scanner = Scanner(string: hexColor)
-                var hexNumber: UInt64 = 0
-
-                if scanner.scanHexInt64(&hexNumber) {
-                    r = CGFloat((hexNumber & 0xff000000) >> 24) / 255
-                    g = CGFloat((hexNumber & 0x00ff0000) >> 16) / 255
-                    b = CGFloat((hexNumber & 0x0000ff00) >> 8) / 255
-                    a = CGFloat(hexNumber & 0x000000ff) / 255
-
-                    self.init(red: r, green: g, blue: b, alpha: a)
-                    return
-                }
-            }
-        }
-
-        return nil
-    }
-}
-
 class ViewController: UIViewController {
 
     @IBOutlet weak var iconView: UIView!
@@ -67,6 +39,7 @@ class ViewController: UIViewController {
         iconView.layer.cornerRadius = 40
         numberUIView.layer.cornerRadius = 20
         numberTextField.borderStyle = .none
+        continueButton.layer.cornerRadius = 15
         
         let tap = UITapGestureRecognizer(target: self, action: #selector(ViewController.removeKeyboardAndConstraints))
         view.addGestureRecognizer(tap)
@@ -80,7 +53,7 @@ class ViewController: UIViewController {
         NSLayoutConstraint.deactivate(constraints)
         
         UIView.animate(withDuration: 0.5, delay: 0, options: UIView.AnimationOptions.curveEaseInOut, animations: {
-            self.iconView.backgroundColor = UIColor(hex: "#010101")
+            self.iconView.backgroundColor = UIColor(hexString: "#93DCA7")
             self.view.layoutIfNeeded()
         })
     }
@@ -120,10 +93,30 @@ extension ViewController: UITextFieldDelegate {
        
         
         UIView.animate(withDuration: 0.5, delay: 0, options: UIView.AnimationOptions.curveEaseInOut, animations: {
-            self.iconView.backgroundColor = UIColor(hex: "#808080")
+            self.iconView.backgroundColor =  nil
             self.view.layoutIfNeeded()
         })
         
+    }
+}
+
+extension UIColor {
+    convenience init(hexString: String) {
+        let hex = hexString.trimmingCharacters(in: CharacterSet.alphanumerics.inverted)
+        var int = UInt64()
+        Scanner(string: hex).scanHexInt64(&int)
+        let a, r, g, b: UInt64
+        switch hex.count {
+        case 3: // RGB (12-bit)
+            (a, r, g, b) = (255, (int >> 8) * 17, (int >> 4 & 0xF) * 17, (int & 0xF) * 17)
+        case 6: // RGB (24-bit)
+            (a, r, g, b) = (255, int >> 16, int >> 8 & 0xFF, int & 0xFF)
+        case 8: // ARGB (32-bit)
+            (a, r, g, b) = (int >> 24, int >> 16 & 0xFF, int >> 8 & 0xFF, int & 0xFF)
+        default:
+            (a, r, g, b) = (255, 0, 0, 0)
+        }
+        self.init(red: CGFloat(r) / 255, green: CGFloat(g) / 255, blue: CGFloat(b) / 255, alpha: CGFloat(a) / 255)
     }
 }
 
