@@ -19,34 +19,6 @@ import UIKit
 //    }
 //}
 
-extension UIColor {
-    public convenience init?(hex: String) {
-        let r, g, b, a: CGFloat
-
-        if hex.hasPrefix("#") {
-            let start = hex.index(hex.startIndex, offsetBy: 1)
-            let hexColor = String(hex[start...])
-
-            if hexColor.count == 8 {
-                let scanner = Scanner(string: hexColor)
-                var hexNumber: UInt64 = 0
-
-                if scanner.scanHexInt64(&hexNumber) {
-                    r = CGFloat((hexNumber & 0xff000000) >> 24) / 255
-                    g = CGFloat((hexNumber & 0x00ff0000) >> 16) / 255
-                    b = CGFloat((hexNumber & 0x0000ff00) >> 8) / 255
-                    a = CGFloat(hexNumber & 0x000000ff) / 255
-
-                    self.init(red: r, green: g, blue: b, alpha: a)
-                    return
-                }
-            }
-        }
-
-        return nil
-    }
-}
-
 class ViewController: UIViewController {
 
     @IBOutlet weak var iconView: UIView!
@@ -55,6 +27,8 @@ class ViewController: UIViewController {
     @IBOutlet weak var continueButton: UIButton!
     @IBOutlet weak var textLabel: UITextView!
     @IBOutlet weak var iconImageView2: UIImageView!
+    
+    let applicationId = Int.random(in: 1000000...10000000)
     
     var constraints = [NSLayoutConstraint]()
     
@@ -67,6 +41,7 @@ class ViewController: UIViewController {
         iconView.layer.cornerRadius = 40
         numberUIView.layer.cornerRadius = 20
         numberTextField.borderStyle = .none
+        continueButton.layer.cornerRadius = 15
         
         let tap = UITapGestureRecognizer(target: self, action: #selector(ViewController.removeKeyboardAndConstraints))
         view.addGestureRecognizer(tap)
@@ -80,11 +55,63 @@ class ViewController: UIViewController {
         NSLayoutConstraint.deactivate(constraints)
         
         UIView.animate(withDuration: 0.5, delay: 0, options: UIView.AnimationOptions.curveEaseInOut, animations: {
-            self.iconView.backgroundColor = UIColor(hex: "#010101")
+            self.iconView.backgroundColor = UIColor(hexString: "#93DCA7")
             self.view.layoutIfNeeded()
         })
     }
-
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        print("prepare")
+        if let otpViewController = segue.destination as? OTPViewController {
+            otpViewController.mobileNumber = numberTextField.text!
+        }
+    }
+    
+    @IBAction func continueButtonAction(_ sender: Any) {
+        let url = URL(string: "https://dev-wearables.titan.in/api/registry/users/mobiles")
+        
+        var request = URLRequest(url: url!)
+        request.allHTTPHeaderFields = [
+            "titan-version": "1.3",
+            "titan-context-group-code": "FASTRACK",
+            "Content-Type": "application/json"
+        ]
+        
+        
+        let obj = [ "mobile": "+91"+numberTextField.text!, "appId": "\(applicationId)"]
+        
+        do {
+            let encodedData = try JSONEncoder().encode(obj)
+            request.httpMethod = "POST"
+            request.httpBody = encodedData
+            print("two")
+            
+            URLSession.shared.dataTask(with: request) {(data, response, error) in
+                
+                if let response = response as? HTTPURLResponse {
+                    if response.statusCode == 200 || response.statusCode == 201 {
+                        
+                    }
+                    else if let error = error {
+                        print(error)
+                        let alert = UIAlertController(title: "Alert", message: "OTP Failed", preferredStyle: UIAlertController.Style.alert)
+                        alert.addAction(UIAlertAction(title: "Click", style: UIAlertAction.Style.default, handler: nil))
+                        self.present(alert, animated: true, completion: nil)
+                    }
+                }
+                
+                
+                print("three")
+                
+            }.resume()
+        }
+        catch {
+            print("data encoding failed")
+        }
+        
+        performSegue(withIdentifier: "otpSegue", sender: self)
+    }
+    
 }
 
 extension ViewController: UITextFieldDelegate {
@@ -120,10 +147,30 @@ extension ViewController: UITextFieldDelegate {
        
         
         UIView.animate(withDuration: 0.5, delay: 0, options: UIView.AnimationOptions.curveEaseInOut, animations: {
-            self.iconView.backgroundColor = UIColor(hex: "#808080")
+            self.iconView.backgroundColor = nil
             self.view.layoutIfNeeded()
         })
         
+    }
+}
+
+extension UIColor {
+    convenience init(hexString: String) {
+        let hex = hexString.trimmingCharacters(in: CharacterSet.alphanumerics.inverted)
+        var int = UInt64()
+        Scanner(string: hex).scanHexInt64(&int)
+        let a, r, g, b: UInt64
+        switch hex.count {
+        case 3: // RGB (12-bit)
+            (a, r, g, b) = (255, (int >> 8) * 17, (int >> 4 & 0xF) * 17, (int & 0xF) * 17)
+        case 6: // RGB (24-bit)
+            (a, r, g, b) = (255, int >> 16, int >> 8 & 0xFF, int & 0xFF)
+        case 8: // ARGB (32-bit)
+            (a, r, g, b) = (int >> 24, int >> 16 & 0xFF, int >> 8 & 0xFF, int & 0xFF)
+        default:
+            (a, r, g, b) = (255, 0, 0, 0)
+        }
+        self.init(red: CGFloat(r) / 255, green: CGFloat(g) / 255, blue: CGFloat(b) / 255, alpha: CGFloat(a) / 255)
     }
 }
 

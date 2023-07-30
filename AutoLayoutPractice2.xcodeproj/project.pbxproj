@@ -7,15 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B54A79C32A7651A90029549D /* OTPModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54A79C22A7651A90029549D /* OTPModel.swift */; };
 		B599EAFF2A6943E700C4CBA6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B599EAFE2A6943E700C4CBA6 /* AppDelegate.swift */; };
 		B599EB012A6943E700C4CBA6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B599EB002A6943E700C4CBA6 /* SceneDelegate.swift */; };
 		B599EB032A6943E700C4CBA6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B599EB022A6943E700C4CBA6 /* ViewController.swift */; };
 		B599EB062A6943E700C4CBA6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B599EB042A6943E700C4CBA6 /* Main.storyboard */; };
 		B599EB082A6943E800C4CBA6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B599EB072A6943E800C4CBA6 /* Assets.xcassets */; };
 		B599EB0B2A6943E800C4CBA6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B599EB092A6943E800C4CBA6 /* LaunchScreen.storyboard */; };
+		B59B68CF2A750B4E00F480FC /* OTPViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59B68CE2A750B4E00F480FC /* OTPViewController.swift */; };
+		B59B68D62A750E1900F480FC /* OTPCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59B68D42A750E1900F480FC /* OTPCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B54A79C22A7651A90029549D /* OTPModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTPModel.swift; sourceTree = "<group>"; };
 		B599EAFB2A6943E700C4CBA6 /* AutoLayoutPractice2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AutoLayoutPractice2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B599EAFE2A6943E700C4CBA6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B599EB002A6943E700C4CBA6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -24,6 +28,8 @@
 		B599EB072A6943E800C4CBA6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B599EB0A2A6943E800C4CBA6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B599EB0C2A6943E800C4CBA6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B59B68CE2A750B4E00F480FC /* OTPViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTPViewController.swift; sourceTree = "<group>"; };
+		B59B68D42A750E1900F480FC /* OTPCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTPCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -37,6 +43,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B54A79C12A76518A0029549D /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				B54A79C22A7651A90029549D /* OTPModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		B599EAF22A6943E700C4CBA6 = {
 			isa = PBXGroup;
 			children = (
@@ -59,6 +73,9 @@
 				B599EAFE2A6943E700C4CBA6 /* AppDelegate.swift */,
 				B599EB002A6943E700C4CBA6 /* SceneDelegate.swift */,
 				B599EB022A6943E700C4CBA6 /* ViewController.swift */,
+				B54A79C12A76518A0029549D /* Model */,
+				B59B68CE2A750B4E00F480FC /* OTPViewController.swift */,
+				B59B68D42A750E1900F480FC /* OTPCollectionViewCell.swift */,
 				B599EB042A6943E700C4CBA6 /* Main.storyboard */,
 				B599EB072A6943E800C4CBA6 /* Assets.xcassets */,
 				B599EB092A6943E800C4CBA6 /* LaunchScreen.storyboard */,
@@ -138,7 +155,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B59B68CF2A750B4E00F480FC /* OTPViewController.swift in Sources */,
+				B59B68D62A750E1900F480FC /* OTPCollectionViewCell.swift in Sources */,
 				B599EB032A6943E700C4CBA6 /* ViewController.swift in Sources */,
+				B54A79C32A7651A90029549D /* OTPModel.swift in Sources */,
 				B599EAFF2A6943E700C4CBA6 /* AppDelegate.swift in Sources */,
 				B599EB012A6943E700C4CBA6 /* SceneDelegate.swift in Sources */,
 			);
